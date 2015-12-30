@@ -14,6 +14,7 @@ class DogsController < ApplicationController
 
 	def create
 		@dog = Dog.new(dog_params)
+		@dog.user = current_user
 		if @dog.save
 			flash[:notice] = "Your dog announcement has been saved correctly."
 			redirect_to @dog
