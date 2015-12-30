@@ -1,0 +1,38 @@
+<h1><%= @dog.name %></h1>
+
+<p><%= link_to "Edit", edit_dog_path(@dog) %></p>
+<p><%= link_to "Delete", dog_path(@dog), method: :delete, data: { confirm: "Are you sure?"}  %></p>
+
+<p>Breed: <%= @dog.breed %></p>
+<% if !@dog.specify.blank? %>
+	<p><%= @dog.specify %></p>
+<% end %>
+<p>Personality: <%= simple_format(@dog.description) %></p>
+<p>Color: <%= simple_format(@dog.color) %></p>
+<p>Gender: <%= @dog.gender %></p>
+<p>Size: <%= @dog.size %></p>
+<p>Age: <%= @dog.age %></p>
+
+<% if @dog.sterilized %>
+	<p>Sterilized: Yes</p>
+<% else %>
+	<p>Sterilized: No</p>
+<% end %>
+<% if @dog.vaccined %>
+	<p>Vaccined: Yes</p>
+<% else %>
+	<p>Vaccined: No</p>
+<% end %>
+<% if @dog.urgent %>
+	<p>Needed adoption before: <%= @dog.adopt_before %></p>
+<% end %>
+
+<p>Special requirements: <%= @dog.adopter_requirements %></p>
+<p>City (where the dog is located) <%= @dog.city %></p>
+<p>State (where the dog is located)<%= @dog.state %></p>
+<p>Country (where the dog is located)<%= @dog.country %></p>
+
+<p>Photo 1 (This is the profile photo): <%= @dog.photo1 %></p>
+<p>Photo 2<%= @dog.photo2 %></p>
+<p>Photo 3<%= @dog.photo3 %></p>
+
