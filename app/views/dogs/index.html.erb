@@ -1,0 +1,10 @@
+<h1>Dogs that need adoption</h1>
+
+<%= link_to "New dog announcement", new_dog_path %>
+<% @dogs.each do |dog| %>
+	<%= link_to dog do %>
+		<p><%= dog.photo1 %> | <%= dog.name %> | <%= dog.breed %> | <%= dog.city %> | <%= dog.state %> | <%= dog.country %>  </p>
+	<% end %>
+<% end %>
+
+<%= will_paginate @requisitions, :previous_label => 'Anterior', :next_label => 'Siguiente'  %>

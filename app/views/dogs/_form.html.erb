@@ -1,0 +1,77 @@
+<%= form_for(@dog) do |f| %>
+	<% if @dog.errors.any? %>	
+		<h2><%= pluralize(@dog.errors.count, "error") %></h2>
+			<ul>
+				<% @dog.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+	<% end %>
+
+	<p><%= f.text_field :name, placeholder: "Name" %></p>
+	<p><%= f.select(:breed, ['OTHER OR MIX', 'AFFENPINSCHER', 'AFGHAN HOUND','AIREDALE TERRIER', 'AIREDALE TERRIER', 'AKITA', 'ALASKAN MALAMUTE', 'AMERICAN ENGLISH COONHOUND', 'AMERICAN ESKIMO DOG', 'AMERICAN FOXHOUND', 'AMERICAN HAIRLESS TERRIER', 'AMERICAN LEOPARD HOUND', 'AMERICAN STAFFORDSHIRE TERRIER', 'AMERICAN WATER SPANIEL', 'ANATOLIAN SHEPHERD DOG', 'APPENZELLER SENNENHUNDE', 'AUSTRALIAN CATTLE DOG', 'AUSTRALIAN SHEPHERD', 'AUSTRALIAN TERRIER', 'AZAWAKH', 'BARBET', 'BASENJI', 'BASSET FAUVE DE BRETAGNE', 'BASSET HOUND', 'BEAGLE', 'BEARDED COLLIE', 'BEAUCERON', 'BEDLINGTON TERRIER', 'BELGIAN LAEKENOIS', 'BELGIAN MALINOIS', 'BELGIAN SHEEPDOG', 'BELGIAN TERVUREN', 'BERGAMASCO', 'BERGER PICARD', 'BERNESE MOUNTAIN DOG', 'BICHON FRISE', 'BIEWER TERRIER', 'BLACK AND TAN COONHOUND', 'BLACK RUSSIAN TERRIER', 'BLOODHOUND', 'BLUETICK COONHOUND', 'BOERBOEL', 'BOLOGNESE'], {}, :id  => 'breed' ) %></p>
+	<div style="visibility: visible;" id="specify">
+		<p><%= f.text_field :specify, placeholder: "Specify:" %></p>
+	</div>
+	<p><%= f.text_area :description, placeholder: "Describe the dog's personality" %></p>
+	<p><%= f.text_area :color, placeholder: "Describe the dog's color and fur" %></p>
+	<p><%= f.select(:gender, ['Female', 'Male']) %></p>
+	<p><%= f.text_field :age, placeholder: "Age" %></p>
+	<p><%= f.select(:size, ['Small', 'Medium', 'Large']) %></p>
+	<p><%= f.check_box :sterilized %>Is sterilized?</p>
+	<p><%= f.check_box :vaccined %>Is vaccined?</p>
+	<p><%= f.check_box :urgent, id: "mega_urgent" %>Is urgent?</p>
+	<div style="visibility: hidden;" id="dates">
+		<p>Adoption needed before: <%= f.date_select :adopt_before %></p>
+	</div>
+
+	<p>Photo 1 (This one will be the profile pic) <%= f.file_field :photo1 %></p>
+	<p>Photo 2  <%= f.file_field :photo2 %></p>
+	<p>Photo 3  <%= f.file_field :photo3 %></p>
+
+	<p><%= f.text_area :adopter_requirements, placeholder: "Describe your dogs special requirements or anythig extra" %></p>
+	<p><%= f.text_field :city, placeholder: "Guadalajara" %></p>
+	<p><%= f.text_field :state, placeholder: "Jalisco" %></p>
+	<p><%= f.text_field :country, placeholder: "Mexico" %></p>
+
+	<p><%= f.submit "Save" %>
+
+<% end %>
+
+<script type="text/javascript">
+	//console.log("alñas");
+	var check = document.getElementById("mega_urgent");
+	check.onchange = function() {
+	var h = document.getElementById("dates");
+	//console.log("la");
+     if(this.checked) {
+     	//console.log("lol");
+        
+        h.style.visibility ="visible"
+     } 
+
+    if(this.checked == false) {
+     	//console.log("lol");
+         
+        h.style.visibility ="hidden"
+     }
+};
+
+$('#breed').on('change', function(event) {
+	console.log("lala");
+	var action = $(this).val();
+	var h = document.getElementById("specify");
+	h.style.visibility = "hidden";
+	//console.log("lol");
+	if (action != "OTHER OR MIX"){
+		//console.log("e");
+		h.style.visibility = "hidden";
+	} else {
+		h.style.visibility = "visible";
+		//console.log("i");
+		
+	}
+
+});
+</script>
+
