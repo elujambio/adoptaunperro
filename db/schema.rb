@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20151230224400) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "phone"
+    t.string   "name"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
