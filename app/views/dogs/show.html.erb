@@ -1,4 +1,15 @@
 <h1><%= @dog.name %></h1>
+<% if @dog.adopted == -1 %>
+	<p>Needs adoption</p>
+<% end %>
+
+<% if @dog.adopted == 0 %>
+	<p>In process of adoption</p>
+<% end %>
+
+<% if @dog.adopted == 1 %>
+	<p>Adopted!</p>
+<% end %>
 
 <p><%= link_to "Edit", edit_dog_path(@dog) %></p>
 <p><%= link_to "Delete", dog_path(@dog), method: :delete, data: { confirm: "Are you sure?"}  %></p>
