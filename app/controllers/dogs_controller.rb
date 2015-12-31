@@ -1,6 +1,9 @@
 class DogsController < ApplicationController
+	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 	before_action :set_dog, only: [:show, :edit, :update, :destroy]
+	before_action :authorize_owner!, only: [:edit, :update, :destroy]
 	before_action :set_dog_for_adoption, only: [:adoption, :confirm_adoption, :unconfirm_adoption]
+	
 	def index
 		@dogs = Dog.where(:adopted => -1).paginate(:page => params[:page], :per_page => 20)
 	end
@@ -61,6 +64,7 @@ class DogsController < ApplicationController
 	def unconfirm_adoption
 		@dog.update_attributes( :adopted => -1 )
 		@dog.update_attributes( :adopter_id => nil )
+		flash[:notice] = "Oh no! Don't worry your dog will appear again on the main page, so that someone can adopt it"
 		redirect_to @dog
 	end
 

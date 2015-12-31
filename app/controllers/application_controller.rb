@@ -15,5 +15,12 @@ class ApplicationController < ActionController::Base
     end
      
    
+     def authorize_owner!
+      if (current_user != @dog.user) or (@dog.adopted == 1)
+        flash[:alert] = "You don't have the permissions to do this."
+        redirect_to root_url
+      end
+    end
 
+    helper_method :authorize_owner!
 end
