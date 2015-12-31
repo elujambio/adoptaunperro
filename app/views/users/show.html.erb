@@ -1,0 +1,20 @@
+<h1><%= @user.name %></h1>
+
+<% if current_user == @user %>
+	<p><%= link_to "Edit Profile", edit_registration_path(@user) %></p>
+	<p><%= @user.email %></p>
+	<p><%= @user.phone %></p>
+	<p><%= link_to "Create new dog announcement", new_dog_path %>
+	<h3>My announcements</h3>
+<% else %>
+	<h3>This user announcements</h3>
+<% end %>
+
+<% @dogs.each do |dog| %>
+	<%= link_to dog do %>
+		<p><%= dog.photo1 %> | <%= dog.name %> | <%= dog.breed %> | <%= dog.city %> | <%= dog.state %> | <%= dog.country %>  </p>
+	<% end %>
+<% end %>
+
+<%= will_paginate @dogs, :previous_label => 'Previous', :next_label => 'Next'  %>
+

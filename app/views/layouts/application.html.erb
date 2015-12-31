@@ -8,7 +8,30 @@
 </head>
 <body>
 
-<%= yield %>
+	<% flash.each do |key, value| %>
+	    <% if flash %>
+	    <div id="alert">
+	      <% if notice %>
+	        <div id = '<%= key %>'>
+	          <%= notice %>
+	        </div>
+	      <% end %>
+	      <% if alert %>
+	        <div id = '<%= key %>'>
+	          <%= alert %>
+	        </div>
+	      <% end %>
+	    </div>
+	    <% end %>
+	<% end %>
+	<p><%= link_to "Home", root_path %> </p>
+	<% if user_signed_in? %>
+		<p><%= link_to "Profile", current_user %> <%= link_to "Log Out", destroy_user_session_path %></p>
+	<% else %>
+		<p><%= link_to "Log In", new_user_session_path %> or <%= link_to "Join", new_user_registration_path %></p>
+	<% end %>
 
+	<%= yield %>
+	
 </body>
 </html>
