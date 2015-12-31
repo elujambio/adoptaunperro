@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151230232246) do
+ActiveRecord::Schema.define(version: 20151231001805) do
 
   create_table "dogs", force: :cascade do |t|
     t.string   "name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20151230232246) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.integer  "user_id"
+    t.string   "adopter_id"
   end
 
   add_index "dogs", ["user_id"], name: "index_dogs_on_user_id"

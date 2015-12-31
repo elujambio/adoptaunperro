@@ -1,19 +1,27 @@
 <h1><%= @dog.name %></h1>
 <p>Owner: <%= link_to @dog.user.name, @dog.user %></p>
 <% if @dog.adopted == -1 %>
-	<p>Needs adoption</p>
+	<p>Needs adoption <%= link_to "Adopt it now!", dog_adoption_path(@dog) %></p>
 <% end %>
 
 <% if @dog.adopted == 0 %>
 	<p>In process of adoption</p>
+	<!-- This buttons only appear to the user that is the owner of the dog thats why the if-->
+	<% if current_user == @dog.user %>
+		<p> Have you proceeded with the adoption succesfully? Then confirm it so that we can proceed with the certificate of adoption! Not succesful? Don't worry! Click unconfirm button and your dog will appear again in the system so that other users can adopt it!</p>
+		<p><%= link_to "Confim Adoption!", dog_confirm_adoption_path(@dog) %></p>
+		<p><%= link_to "Unconfirm Adoption!", dog_unconfirm_adoption_path(@dog) %></p>
+	<% end %>
 <% end %>
 
 <% if @dog.adopted == 1 %>
 	<p>Adopted!</p>
 <% end %>
 
-<p><%= link_to "Edit", edit_dog_path(@dog) %></p>
-<p><%= link_to "Delete", dog_path(@dog), method: :delete, data: { confirm: "Are you sure?"}  %></p>
+<% if current_user == @dog.user  and @dog.adopted != 1 %>
+	<p><%= link_to "Edit", edit_dog_path(@dog) %></p>
+	<p><%= link_to "Delete", dog_path(@dog), method: :delete, data: { confirm: "Are you sure?"}  %></p>
+<% end %>
 
 <p>Breed: <%= @dog.breed %></p>
 <% if !@dog.specify.blank? %>

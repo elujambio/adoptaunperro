@@ -5,7 +5,14 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'dogs#index'
-  resources :dogs
+  resources :dogs do
+    get :adoption
+    put :adoption
+    get :confirm_adoption
+    put :confirm_adoption
+    get :unconfirm_adoption
+    put :unconfirm_adoption
+  end
   resources :users, only: [:show]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

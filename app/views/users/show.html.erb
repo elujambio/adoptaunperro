@@ -12,7 +12,7 @@
 
 <% @dogs.each do |dog| %>
 	<%= link_to dog do %>
-		<p><%= dog.photo1 %> | <%= dog.name %> | <%= dog.breed %> | <%= dog.city %> | <%= dog.state %> | <%= dog.country %>  </p>
+		<p><%= dog.photo1 %> | <%= dog.name %> | <%= dog.breed %> | <%= dog.city %> | <%= dog.state %> | <%= dog.country %>  | <% if dog.adopted == 1 %> Yes! <%= dog.name %> was adopted!<% end %></p>
 	<% end %>
 <% end %>
 
