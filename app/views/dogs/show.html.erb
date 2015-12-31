@@ -1,5 +1,5 @@
 <h1><%= @dog.name %></h1>
-<p>Owner: <%= @dog.user.name %></p>
+<p>Owner: <%= link_to @dog.user.name, @dog.user %></p>
 <% if @dog.adopted == -1 %>
 	<p>Needs adoption</p>
 <% end %>
