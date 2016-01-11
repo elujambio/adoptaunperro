@@ -3,7 +3,7 @@
 <%= link_to "New dog announcement", new_dog_path %>
 <% @dogs.each do |dog| %>
 	<%= link_to dog do %>
-		<p><%= dog.photo1 %> | <%= dog.name %> | <%= dog.breed %> | <%= dog.city %> | <%= dog.state %> | <%= dog.country %>  </p>
+		<%= image_tag dog.photo1 %> | <%= dog.name %> | <%= dog.breed %> | <%= dog.city %> | <%= dog.state %> | <%= dog.country %>
 	<% end %>
 <% end %>
 
